@@ -1,10 +1,23 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 import 'screens/camera_screen.dart';
 
+/// Requests both storage and manage external storage permissions.
+Future<void> requestStoragePermission() async {
+  // Basic storage (READ/WRITE) – for Android <11
+  await Permission.storage.request();
+
+  // For Android 11+ full filesystem access to the Download folder
+  await Permission.manageExternalStorage.request();
+}
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Request storage permissions on launch
+  await requestStoragePermission();
 
   final cameras = await availableCameras();
 

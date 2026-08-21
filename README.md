@@ -28,3 +28,5 @@ To get adb devices
 Order
 "& "C:\Users\srikr\AppData\Local\Android\sdk\emulator\emulator.exe" -avd Pixel_6_API_35 -gpu swiftshader -camera-front webcam0"
 "flutter run -d emulator-5554"
+
+& "C:\Users\srikr\AppData\Local\Android\sdk\emulator\emulator.exe" -avd Pixel_6_API_35 -gpu swiftshader -camera-front webcam0 -no-snapshot-load (if issues use this)

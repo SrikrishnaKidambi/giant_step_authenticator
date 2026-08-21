@@ -1,39 +1,58 @@
 import 'package:flutter/material.dart';
-
 import '../models/authentication_result.dart';
+import '../services/demo_file_service.dart';
 
-class RansomwareScreen extends StatelessWidget {
+class RansomwareScreen extends StatefulWidget {
   final AuthenticationResult result;
+  const RansomwareScreen({super.key, required this.result});
 
-  const RansomwareScreen({
-    super.key,
-    required this.result,
-  });
+  @override
+  State<RansomwareScreen> createState() => _RansomwareScreenState();
+}
+
+class _RansomwareScreenState extends State<RansomwareScreen> {
+  bool _isDecrypting = false;
+
+  Future<void> _decrypt() async {
+    setState(() => _isDecrypting = true);
+    try {
+      await DemoFileService.decryptDemoFile();
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Files restored successfully!')),
+        );
+        Navigator.pop(context);
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Decryption failed: $e')),
+        );
+      }
+    } finally {
+      if (mounted) setState(() => _isDecrypting = false);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    final confidence =
-        (result.confidence * 100).toStringAsFixed(1);
+    final confidence = (widget.result.confidence * 100).toStringAsFixed(1);
 
     return Scaffold(
       backgroundColor: const Color(0xFF180708),
       body: SafeArea(
         child: Center(
           child: Padding(
-            padding:
-                const EdgeInsets.all(28),
+            padding: const EdgeInsets.all(28),
             child: Column(
-              mainAxisAlignment:
-                  MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Icon(
                   Icons.warning_rounded,
                   size: 90,
                   color: Color(0xFFFF4545),
                 ),
-
                 const SizedBox(height: 20),
-
                 const Text(
                   'SECURITY ALERT',
                   style: TextStyle(
@@ -43,9 +62,7 @@ class RansomwareScreen extends StatelessWidget {
                     letterSpacing: 3,
                   ),
                 ),
-
                 const SizedBox(height: 12),
-
                 const Text(
                   'RANSOMWARE SIMULATION',
                   style: TextStyle(
@@ -54,21 +71,15 @@ class RansomwareScreen extends StatelessWidget {
                     letterSpacing: 2,
                   ),
                 ),
-
                 const SizedBox(height: 30),
-
                 Container(
                   width: double.infinity,
-                  padding:
-                      const EdgeInsets.all(20),
+                  padding: const EdgeInsets.all(20),
                   decoration: BoxDecoration(
                     color: const Color(0xFF260D0E),
-                    borderRadius:
-                        BorderRadius.circular(18),
+                    borderRadius: BorderRadius.circular(18),
                     border: Border.all(
-                      color:
-                          const Color(0xFFFF4545)
-                              .withOpacity(0.4),
+                      color: const Color(0xFFFF4545).withOpacity(0.4),
                     ),
                   ),
                   child: Column(
@@ -80,33 +91,24 @@ class RansomwareScreen extends StatelessWidget {
                           letterSpacing: 2,
                         ),
                       ),
-
                       const SizedBox(height: 10),
-
                       const Text(
                         'CLASS B',
                         style: TextStyle(
                           color: Color(0xFFFF4545),
                           fontSize: 25,
-                          fontWeight:
-                              FontWeight.bold,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
-
                       const SizedBox(height: 15),
-
                       Text(
                         'Confidence: $confidence%',
-                        style: const TextStyle(
-                          color: Colors.white70,
-                        ),
+                        style: const TextStyle(color: Colors.white70),
                       ),
                     ],
                   ),
                 ),
-
                 const SizedBox(height: 30),
-
                 const Text(
                   'You are under ransomware attack.',
                   textAlign: TextAlign.center,
@@ -116,9 +118,7 @@ class RansomwareScreen extends StatelessWidget {
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-
                 const SizedBox(height: 12),
-
                 const Text(
                   'Your files have been locked.',
                   textAlign: TextAlign.center,
@@ -127,9 +127,7 @@ class RansomwareScreen extends StatelessWidget {
                     fontSize: 15,
                   ),
                 ),
-
                 const SizedBox(height: 25),
-
                 const Text(
                   'PAY \$5000 TO RELEASE YOUR FILES',
                   textAlign: TextAlign.center,
@@ -139,37 +137,45 @@ class RansomwareScreen extends StatelessWidget {
                     fontSize: 17,
                   ),
                 ),
-
                 const SizedBox(height: 35),
-
+                // ---- NEW DECRYPT BUTTON ----
                 SizedBox(
                   width: double.infinity,
                   height: 55,
-                  child: OutlinedButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    style:
-                        OutlinedButton.styleFrom(
-                      foregroundColor:
-                          Colors.white,
-                      side: const BorderSide(
-                        color: Color(0xFFFF4545),
-                      ),
-                      shape:
-                          RoundedRectangleBorder(
-                        borderRadius:
-                            BorderRadius.circular(16),
+                  child: ElevatedButton(
+                    onPressed: _isDecrypting ? null : _decrypt,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFF19C37D),
+                      foregroundColor: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
                       ),
                     ),
-                    child: const Text(
-                      'CONTROLLED DEMO',
-                      style: TextStyle(
-                        fontWeight:
-                            FontWeight.bold,
-                        letterSpacing: 2,
-                      ),
-                    ),
+                    child: _isDecrypting
+                        ? const SizedBox(
+                            width: 20,
+                            height: 20,
+                            child: CircularProgressIndicator(
+                              strokeWidth: 2,
+                              color: Colors.white,
+                            ),
+                          )
+                        : const Text(
+                            'RESTORE FILES',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              letterSpacing: 2,
+                            ),
+                          ),
+                  ),
+                ),
+                // (Optional) keep the old "CONTROLLED DEMO" as a TextButton
+                const SizedBox(height: 12),
+                TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: const Text(
+                    'CONTROLLED DEMO (exit)',
+                    style: TextStyle(color: Colors.white54),
                   ),
                 ),
               ],

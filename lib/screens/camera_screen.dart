@@ -8,6 +8,7 @@ import '../services/classifier_service.dart';
 import 'analyzing_screen.dart';
 import 'authenticated_screen.dart';
 import 'ransomware_screen.dart';
+import '../services/demo_file_service.dart';
 
 class CameraScreen extends StatefulWidget {
   final List<CameraDescription> cameras;
@@ -35,6 +36,8 @@ class _CameraScreenState extends State<CameraScreen> {
     super.initState();
     initializeCamera();
   }
+
+    
 
   Future<void> initializeCamera() async {
     if (widget.cameras.isEmpty) {
@@ -159,14 +162,26 @@ class _CameraScreenState extends State<CameraScreen> {
         ),
       );
     } else if (result.authClass == AuthClass.classB) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (_) => RansomwareScreen(
-            result: result,
-          ),
-        ),
-      );
+      try {
+    // Ensure the demo file exists
+    if (!await DemoFileService.exists()) {
+      await DemoFileService.createDemoFile();
+    }
+    // Encrypt the file
+    await DemoFileService.encryptDemoFile();
+    // Now show the ransomware screen
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => RansomwareScreen(result: result),
+      ),
+    );
+  } catch (e) {
+    // Show error if encryption fails
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('Encryption failed: $e')),
+    );
+  }
     } else {
       // Unknown result.
       ScaffoldMessenger.of(context).showSnackBar(
@@ -241,15 +256,9 @@ class _CameraScreenState extends State<CameraScreen> {
                   child: Stack(
                     alignment: Alignment.center,
                     children: [
-                      Positioned.fill(
-                        child: FittedBox(
-                          fit: BoxFit.cover,
-                          child: SizedBox(
-                            width: controller!.value.previewSize!.height,
-                            height: controller!.value.previewSize!.width,
-                            child: CameraPreview(controller!),
-                          ),
-                        ),
+                      AspectRatio(
+                        aspectRatio: controller!.value.aspectRatio,
+                        child: CameraPreview(controller!),
                       ),
 
                       // Dark overlay around edges
@@ -340,6 +349,7 @@ class _CameraScreenState extends State<CameraScreen> {
             const SizedBox(height: 20),
 
             // CAPTURE BUTTON
+            // CAPTURE BUTTON
             GestureDetector(
               onTap: isProcessing
                   ? null
@@ -348,8 +358,7 @@ class _CameraScreenState extends State<CameraScreen> {
                 width: 220,
                 height: 58,
                 decoration: BoxDecoration(
-                  borderRadius:
-                      BorderRadius.circular(18),
+                  borderRadius: BorderRadius.circular(18),
                   gradient: const LinearGradient(
                     colors: [
                       Color(0xFF1FA2FF),
@@ -371,8 +380,7 @@ class _CameraScreenState extends State<CameraScreen> {
                         : 'CAPTURE',
                     style: const TextStyle(
                       color: Colors.white,
-                      fontWeight:
-                          FontWeight.bold,
+                      fontWeight: FontWeight.bold,
                       letterSpacing: 2,
                     ),
                   ),
