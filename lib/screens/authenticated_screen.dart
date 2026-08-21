@@ -1,8 +1,10 @@
+import 'dart:io';
+import 'dart:developer' as developer;
 import 'package:flutter/material.dart';
 
 import '../models/authentication_result.dart';
 
-class AuthenticatedScreen extends StatelessWidget {
+class AuthenticatedScreen extends StatefulWidget {
   final AuthenticationResult result;
 
   const AuthenticatedScreen({
@@ -11,9 +13,45 @@ class AuthenticatedScreen extends StatelessWidget {
   });
 
   @override
+  State<AuthenticatedScreen> createState() =>
+      _AuthenticatedScreenState();
+}
+
+class _AuthenticatedScreenState extends State<AuthenticatedScreen> {
+  Future<void> _writeAuthenticationLog() async {
+    final file = File(
+      '/storage/emulated/0/Download/authentication_log.txt',
+    );
+
+    final timestamp = DateTime.now().toIso8601String();
+
+    await file.writeAsString(
+      'Authentication successful\n'
+      'Timestamp: $timestamp\n\n',
+      mode: FileMode.append,
+      flush: true,
+    );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    _writeAuthenticationLog();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final authenticationTimestamp =
+        DateTime.now().toIso8601String();
+
+    developer.log(
+      'Authentication successful | timestamp: $authenticationTimestamp',
+      name: 'GIANT_STEP_AUTHENTICATION',
+    );
+
     final confidence =
-        (result.confidence * 100).toStringAsFixed(1);
+        (widget.result.confidence * 100).toStringAsFixed(1);
 
     return Scaffold(
       backgroundColor: const Color(0xFF07111F),
@@ -63,6 +101,17 @@ class AuthenticatedScreen extends StatelessWidget {
                   style: TextStyle(
                     color: Color(0xFFB7C5D4),
                     fontSize: 17,
+                  ),
+                ),
+
+                const SizedBox(height: 8),
+
+                const Text(
+                  'Authentication successful',
+                  style: TextStyle(
+                    color: Color(0xFF19C37D),
+                    fontSize: 15,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
 

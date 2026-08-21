@@ -1,0 +1,39 @@
+==================================================
+             RANSOMWARE MANIFEST
+==================================================
+
+
+1. ENCRYPTION INFORMATION
+--------------------------------------------------
+Encryption Timestamp:
+2026-08-22T00:22:45.748098
+
+Encryption Status:
+giant_step_demo.txt FILE ENCRYPTED
+
+2. FILES AFFECTED
+--------------------------------------------------
+Original Demo File:
+/storage/emulated/0/Download/giant_step_demo.txt
+
+Demo Encrypted File:
+/storage/emulated/0/Download/giant_step_demo.txt.enc
+
+3. RECOVERY / DECRYPTION INFORMATION
+--------------------------------------------------
+
+Once you pay the ransom demand then I will provide you the decryption key and AES decryption code and use it to decrypt your file.
+
+4. RANSOM DEMAND
+--------------------------------------------------
+DEMO RANSOM DEMAND: 5000 dollars
+
+5. SYSTEM INFORMATION
+--------------------------------------------------
+OS: android
+OS Version: sdk_gphone16k_x86_64-userdebug 15 AP31.240617.003 12088229 dev-keys
+
+
+==================================================
+        END OF DEMONSTRATION MANIFEST
+==================================================
