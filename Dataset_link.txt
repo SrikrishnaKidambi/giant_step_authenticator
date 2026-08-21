@@ -1,0 +1,2 @@
+The dataset used for training is available publicly as per 80/10/10 split in the below drive link:
+https://drive.google.com/drive/folders/1NZIo8AFKecW3iY3hVkCljTmIYl3Q4iMN?usp=drive_link
