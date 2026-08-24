@@ -207,7 +207,7 @@ Video Link: [Insert Video Link]
 <img width="1570" height="476" alt="image" src="https://github.com/user-attachments/assets/f30741e6-287f-49fe-92e2-f9b455780399" />
 
 
-# How to run emulator
+# How to run emulator and additional commands used: 
 To run android emulator
 "& "C:\Users\srikr\AppData\Local\Android\sdk\emulator\emulator.exe" -avd Pixel_6_API_35 -gpu swiftshader"
 
