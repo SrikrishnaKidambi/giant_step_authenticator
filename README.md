@@ -1,3 +1,5 @@
+# Single input images used:
+<img width="1570" height="476" alt="image" src="https://github.com/user-attachments/assets/f30741e6-287f-49fe-92e2-f9b455780399" />
 
 
 # How to run emulator
