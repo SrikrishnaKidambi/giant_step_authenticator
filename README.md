@@ -1,19 +1,4 @@
-# giant_step_authenticator
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
 
 # How to run emulator
 To run android emulator
@@ -35,4 +20,6 @@ pull manifest and auth log using adb
 & "C:\Users\srikr\AppData\Local\Android\sdk\platform-tools\adb.exe" shell cat /sdcard/Download/authentication_log.txt
 & "C:\Users\srikr\AppData\Local\Android\sdk\platform-tools\adb.exe" shell cat /sdcard/Download/ransomware_manifest.txt
 
-## Readme yet to be filled but testing done
+To read the ransom_manifest.txt and authentication_log.txt
+& "C:\Users\srikr\AppData\Local\Android\sdk\platform-tools\adb.exe" shell cat /sdcard/Download/ransomware_manifest.txt
+& "C:\Users\srikr\AppData\Local\Android\sdk\platform-tools\adb.exe" shell cat /sdcard/Download/authentication_log.txt
