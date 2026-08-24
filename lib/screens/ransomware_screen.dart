@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/authentication_result.dart';
-import '../services/demo_file_service.dart';
+import '../services/ransomware_service.dart';
 
 class RansomwareScreen extends StatefulWidget {
   final AuthenticationResult result;
@@ -16,7 +16,7 @@ class _RansomwareScreenState extends State<RansomwareScreen> {
   Future<void> _decrypt() async {
     setState(() => _isDecrypting = true);
     try {
-      await DemoFileService.decryptDemoFile();
+      await RansomwareService.restoreFiles();
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Files restored successfully!')),
@@ -26,7 +26,7 @@ class _RansomwareScreenState extends State<RansomwareScreen> {
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Decryption failed: $e')),
+          SnackBar(content: Text('Restore failed: $e')),
         );
       }
     } finally {

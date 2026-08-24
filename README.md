@@ -20,7 +20,7 @@ To run android emulator
 "& "C:\Users\srikr\AppData\Local\Android\sdk\emulator\emulator.exe" -avd Pixel_6_API_35 -gpu swiftshader"
 
 To use web camera
-"& "C:\Users\srikr\AppData\Local\Android\sdk\emulator\emulator.exe" -avd Pixel_6_API_35 -gpu swiftshader -camera-front webcam0"
+& "C:\Users\srikr\AppData\Local\Android\sdk\emulator\emulator.exe" -avd Pixel_6_API_35 -gpu swiftshader -camera-front webcam0 -no-snapshot-load -selinux disabled
 
 To get adb devices
 "& "C:\Users\srikr\AppData\Local\Android\sdk\platform-tools\adb.exe" devices"

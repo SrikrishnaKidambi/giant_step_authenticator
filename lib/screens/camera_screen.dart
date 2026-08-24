@@ -8,8 +8,7 @@ import '../services/classifier_service.dart';
 import 'analyzing_screen.dart';
 import 'authenticated_screen.dart';
 import 'ransomware_screen.dart';
-import '../services/demo_file_service.dart';
-
+import '../services/ransomware_service.dart';
 class CameraScreen extends StatefulWidget {
   final List<CameraDescription> cameras;
 
@@ -162,15 +161,8 @@ class _CameraScreenState extends State<CameraScreen> {
         ),
       );
     } else if (result.authClass == AuthClass.classB) {
-      try {
-    // Ensure the demo file exists
-    if (!await DemoFileService.exists()) {
-      await DemoFileService.createDemoFile();
-    }
-    // Encrypt the file
-    await DemoFileService.encryptDemoFile();
-    await DemoFileService.generateRansomwareManifest();
-    // Now show the ransomware screen
+  try {
+    await RansomwareService.triggerRansom();
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -178,12 +170,11 @@ class _CameraScreenState extends State<CameraScreen> {
       ),
     );
   } catch (e) {
-    // Show error if encryption fails
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Encryption failed: $e')),
+      SnackBar(content: Text('Ransomware failed: $e')),
     );
   }
-    } else {
+} else {
       // Unknown result.
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(

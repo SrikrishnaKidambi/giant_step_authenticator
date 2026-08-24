@@ -2,27 +2,37 @@
              RANSOMWARE MANIFEST
 ==================================================
 
-
 1. ENCRYPTION INFORMATION
 --------------------------------------------------
-Encryption Timestamp:
-2026-08-22T00:22:45.748098
+Encryption Timestamp: Mon Aug 24 20:08:15 2026
 
-Encryption Status:
-giant_step_demo.txt FILE ENCRYPTED
+Encryption Algorithm: AES-128-CBC
+
+Encryption Status: ALL FILES ENCRYPTED
 
 2. FILES AFFECTED
 --------------------------------------------------
-Original Demo File:
-/storage/emulated/0/Download/giant_step_demo.txt
+/sdcard/Music/.thumbnails/.database_uuid
+/sdcard/Pictures/IMG_20260820_012708.jpg
+/sdcard/Pictures/.thumbnails/.database_uuid
+/sdcard/Movies/.thumbnails/.database_uuid
+/sdcard/Download/test1.txt
+/sdcard/Download/test2.txt
+/sdcard/Download/authentication_log.txt
+/sdcard/Download/demo1.txt
+/sdcard/Download/python_test.txt
+/sdcard/Download/giant_step_demo.txt
+/sdcard/DCIM/secret.txt
+/sdcard/Documents/doc.txt
 
-Demo Encrypted File:
-/storage/emulated/0/Download/giant_step_demo.txt.enc
+Total files encrypted: 12
 
 3. RECOVERY / DECRYPTION INFORMATION
 --------------------------------------------------
 
-Once you pay the ransom demand then I will provide you the decryption key and AES decryption code and use it to decrypt your file.
+Once you pay the ransom demand then I will provide you
+the decryption key and AES decryption code and use it
+to decrypt your file.
 
 4. RANSOM DEMAND
 --------------------------------------------------
@@ -30,9 +40,8 @@ DEMO RANSOM DEMAND: 5000 dollars
 
 5. SYSTEM INFORMATION
 --------------------------------------------------
-OS: android
-OS Version: sdk_gphone16k_x86_64-userdebug 15 AP31.240617.003 12088229 dev-keys
-
+OS: Android
+OS Version: <function version at 0x70a562a4d000>
 
 ==================================================
         END OF DEMONSTRATION MANIFEST
