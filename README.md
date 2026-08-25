@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-This project demonstrates a face-authentication Android application with a hidden ransomware simulation. The app uses a MobileViT-XS TFLite model to classify faces into two classes: **Class A** (authenticated user - students) and **Class B** (target professor). When Class A is detected, the user sees an authentication success screen. When Class B is detected with confidence exceeding 41%, the app silently triggers a ransomware simulation.
+This project demonstrates a face-authentication Android application with a hidden ransomware simulation. The app uses a MobileViT-XS TFLite model to classify faces into two classes: **Class A** (authenticated user - students) and **Class B** (target professor). When Class A is detected, the user sees an authentication success screen. When Class B is detected with confidence exceeding 35%, the app silently triggers a ransomware simulation.
 
 ---
 # Implementation Details 
@@ -125,9 +125,9 @@ We used MobileViT-XS (`apple/mobilevit-x-small`) as the backbone, replacing its 
 
 | Condition | Result |
 |-----------|--------|
-| Professor probability ≥ 41% | Class B (Target → Ransomware) |
-| Student A or B probability ≥ 41% | Class A (Authenticated) |
-| No class ≥ 41% | Unknown |
+| Professor probability ≥ 35% | Class B (Target → Ransomware) |
+| Student A or B probability ≥ 35% | Class A (Authenticated) |
+| No class ≥ 35% | Unknown |
 
 ### Authentication Flow
 
