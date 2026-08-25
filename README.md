@@ -191,7 +191,7 @@ Dataset commit tag: `v1.0-dataset`
 
 ### Demo Video
 
-Video Link: [Insert Video Link]
+Video Link: [Demo Video Link](https://drive.google.com/file/d/1WzwXBOYmLxgcoDdk_neOjYjhl5Zwj-aR/view?usp=sharing)
 
 ---
 
