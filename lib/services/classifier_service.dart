@@ -14,7 +14,7 @@ class ClassifierService {
   static const String modelPath =
       'assets/models/mobilevit_model.tflite';
 
-  static const double confidenceThreshold = 0.31;
+  static const double confidenceThreshold = 0.41;
 
   static const int imageSize = 256;
 
@@ -248,12 +248,12 @@ class ClassifierService {
     //
     // SPECIAL RULE:
     //
-    // If PROFESSOR >= 31%
+    // If PROFESSOR >= 41%
     //     -> Class B
     //
     // Otherwise:
     //     me OR teammate -> Class A
-    //     if highest confidence < 31% -> Unknown
+    //     if highest confidence < 41% -> Unknown
     //
     // Professor gets priority over me/teammate.
     // ----------------------------------------------------------
@@ -309,7 +309,7 @@ class ClassifierService {
     } else {
 
       // --------------------------------------------------------
-      // NOTHING REACHED 31%
+      // NOTHING REACHED 41%
       // --------------------------------------------------------
 
       authClass =
