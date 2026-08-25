@@ -185,7 +185,7 @@ mobilevit_model.tflite
 
 ### Dataset Publication
 
-The complete dataset (both classes, all splits) is available at: [googledrive](https://drive.google.com/drive/folders/1NZIo8AFKecW3iY3hVkCljTmIYl3Q4iMN?usp=drive_link)
+The complete dataset (both classes, all splits) is available at: [Dataset Drive Link](https://drive.google.com/drive/folders/1NZIo8AFKecW3iY3hVkCljTmIYl3Q4iMN?usp=drive_link)
 
 Dataset commit tag: `v1.0-dataset`
 
